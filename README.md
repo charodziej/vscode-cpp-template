@@ -1,92 +1,122 @@
 # Vscode Cpp Template
 
-A basic template for multi-file C++ programming with Google Test  support.
+A basic template for multi-file C++ programming with Google Test support.
 
-## Getting started
+## Dependencies
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+For any of this to work you will need to install:
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+-   g++
+-   gdb
+-   cmake
 
-## Add your files
+Under Ubuntu and WSL you can do it using this command:
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab-stud.elka.pw.edu.pl/ajelinsk/vscode-cpp-template.git
-git branch -M main
-git push -uf origin main
+```bash
+sudo apt install g++ gdb cmake
 ```
 
-## Integrate with your tools
+Under macOS you will have to install [Homebrew](https://brew.sh/) and then use:
 
-- [ ] [Set up project integrations](https://gitlab-stud.elka.pw.edu.pl/ajelinsk/vscode-cpp-template/-/settings/integrations)
+```bash
+brew install g++ gdb cmake
+```
 
-## Collaborate with your team
+## Recommended extensions
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+-   [C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack)
+-   [C++ TestMate](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter)
 
-## Test and Deploy
+## Code creation
 
-Use the built-in continuous integration in GitLab.
+-   the `src` folder contains all of your `.cpp` and `.h` files
+-   the `main.cpp` is the main file that controls the execution of the application
+-   the `tests.cpp` file contains all of unit tests created using the [GoogleTest](https://google.github.io/googletest/) framework
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+### Folders inside `src`
 
-***
+Each folder in the `src` folder corresponds to a single class or part of the program and should contain a `.cpp` and `.h` file with the same name.
 
-# Editing this README
+The basic shape of the `.cpp` file for a class called `SomeClass` would look like this:
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+```cpp
+#include "SomeClass.h"
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+// all of the necessary includes
+#include <important_library>
+#include <sorting_library>
 
-## Name
-Choose a self-explaining name for your project.
+void SomeClass::some_method1(int arg) {
+    // ...
+}
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+ImportantType SomeClass::some_method2(double arg) {
+    // ...
+}
+```
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+And this is what a `.h` file would look like
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+```cpp
+#pragma once
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+// only the includes that are necessary for type declarations
+// (the sorting_library has been omitted)
+#include <important_library>
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+class SomeClass {
+public:
+    void some_method1(int arg);
+    ImportantType some_method2(double arg);
+};
+```
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+If you wanted to use `SomeClass` inside `main.cpp` you would include it with:
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+```cpp
+#include "SomeClass/SomeClass.h"
+```
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+If you wanted to use it in a different class, then you would include it with:
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+```cpp
+#include "../SomeClass/SomeClass.h"
+```
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+You can see this implemented inside the example `Square` and `Stack` folders
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## Compilation, execution and testing
 
-## License
-For open source projects, say how it is licensed.
+### Preparations
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+When you open a folder using this template for the first time you will need to configure CMake.
+
+To do that, open the Command Palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>on Windows).
+
+Then type `CMake: Configure` and press enter. You will be asked to select a compiler. Select the newest version of gcc that is proposed.
+
+After that, many new icons will appear on the bottom of your toolbar. This means you have successfuly configured your workspace.
+
+### Compilation
+
+To compile your project, simply press the Build button on your toolbar (it has a gear icon).
+
+### Execution
+
+To compile and run your program, press the play button on your toolbar and then select "main" from a dropdown that appears.
+
+### Testing
+
+To run unit tests, first press the Build button to compile your project and then press the run tests button in the Testing sidebar.
+
+### Debugging
+
+To run your code in debug mode, press the bug-shaped button on your toolbar. On macOS you might be asked to give special debugging permissions.
+
+# Issues
+
+I hope that this helps you with your setup.
+
+However, this setup might not be perfect, so if you see any room for improvements, please suggest them in an issue.
+
+Have fun coding! :D
