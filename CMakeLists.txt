@@ -1,18 +1,29 @@
+# ==============================================================================
+# 
+#   Based on the vscode-cpp-template
+#   Created by:
+#     - Adam Jeliński (charodziej)
+#
+#   https://github.com/charodziej/vscode-cpp-template
+#
+# ==============================================================================
+
+
 cmake_minimum_required(VERSION 3.11.0)
 project(my_project)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# include and configure GoogleTest
+# include and configure catch2
 include(FetchContent)
-FetchContent_Declare( 
-    googletest
-    GIT_REPOSITORY      https://github.com/google/googletest.git
-    GIT_TAG main
+
+FetchContent_Declare(
+    Catch2
+    GIT_REPOSITORY      https://github.com/catchorg/Catch2.git
+    GIT_TAG             v3.0.0-preview3
 )
-FetchContent_MakeAvailable(googletest)
-enable_testing()
+FetchContent_MakeAvailable(Catch2)
 
 # macro to find subdirectories
 # https://stackoverflow.com/a/7788165
@@ -45,8 +56,10 @@ add_executable(main src/main.cpp ${SOURCES})
 
 # create a build target for the testing file
 add_executable(tests src/tests.cpp ${SOURCES})
-target_link_libraries(tests PUBLIC gtest_main)
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
-# initialize GoogleTest
-include(GoogleTest)
-gtest_discover_tests(tests)
+# initialize catch2
+list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
+include(CTest)
+include(Catch)
+catch_discover_tests(tests)

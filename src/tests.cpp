@@ -1,10 +1,9 @@
-#include <gtest/gtest.h>
+#include <catch2/catch_test_macros.hpp>
 #include "Stack/Stack.h"
 
-// TEST(name_of_test_group, name_of_specific_test)
-TEST(my_project, stack_test_1)
+TEST_CASE("stack_test_1")
 {
     Stack stack;
     stack.push(5);
-    ASSERT_EQ(stack.pop(), 25);
+    REQUIRE(stack.pop() == 25);
 }
