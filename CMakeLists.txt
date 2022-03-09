@@ -1,3 +1,13 @@
+# ==============================================================================
+# 
+#   Based on the vscode-cpp-template
+#   Created by:
+#     - Adam Jeliński (charodziej)
+#
+#   https://github.com/charodziej/vscode-cpp-template
+#
+# ==============================================================================
+
 cmake_minimum_required(VERSION 3.11.0)
 project(my_project)
 
