@@ -19,7 +19,7 @@ sudo apt install g++ gdb cmake
 Under macOS you will have to install [Homebrew](https://brew.sh/) and then use:
 
 ```bash
-brew install g++ gdb cmake
+brew install gcc gdb cmake
 ```
 
 ## Recommended extensions
