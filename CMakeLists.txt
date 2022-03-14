@@ -15,7 +15,7 @@ project(my_project)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# include and configure catch2
+# include and configure Catch2
 include(FetchContent)
 
 FetchContent_Declare(
@@ -66,7 +66,7 @@ add_executable(main src/main.cpp ${SOURCES})
 add_executable(tests src/tests.cpp ${TEST_SOURCES} ${SOURCES})
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
-# initialize catch2
+# initialize Catch2
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 include(CTest)
 include(Catch)

@@ -1,6 +1,6 @@
 # Vscode Cpp Template
 
-A basic template for multi-file C++ programming with Google Test support.
+A basic template for multi-file C++ programming with Catch2 support.
 
 ## Dependencies
 
@@ -31,7 +31,7 @@ brew install gcc gdb cmake
 
 -   the `src` folder contains all of your `.cpp` and `.h` files
 -   the `main.cpp` is the main file that controls the execution of the application
--   the `tests.cpp` file contains all of unit tests created using the [GoogleTest](https://google.github.io/googletest/) framework
+-   the `tests.cpp` file contains all of unit tests created using the [Catch2](https://catch2.docsforge.com/) framework
 
 ### Folders inside `src`
 
