@@ -27,7 +27,7 @@ enable_testing()
 # macro to find subdirectories
 # https://stackoverflow.com/a/7788165
 MACRO(SUBDIRLIST result curdir)
-    FILE(GLOB children CONFIGURE_DEPENDS ${curdir}/*)
+    FILE(GLOB_RECURSE children LIST_DIRECTORIES true CONFIGURE_DEPENDS ${curdir}/*)
     SET(dirlist "")
     FOREACH(child ${children})
         IF(IS_DIRECTORY ${child})
